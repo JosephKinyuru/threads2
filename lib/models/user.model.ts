@@ -22,9 +22,25 @@ const userSchema = new mongoose.Schema({
       ref: "Thread",
     },
   ],
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', 
+    }
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
   onboarded: {
     type: Boolean,
     default: false,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
   communities: [
     {
@@ -32,7 +48,7 @@ const userSchema = new mongoose.Schema({
       ref: "Community",
     },
   ],
-});
+}, { timestamps: true });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 

@@ -20,6 +20,10 @@ const communitySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
   threads: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -32,7 +36,7 @@ const communitySchema = new mongoose.Schema({
       ref: "User",
     },
   ],
-});
+}, { timestamps: true });
 
 const Community =
   mongoose.models.Community || mongoose.model("Community", communitySchema);
